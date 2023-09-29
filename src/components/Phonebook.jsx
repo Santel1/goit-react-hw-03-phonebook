@@ -5,6 +5,7 @@ export class Phonebook extends Component {
   state = {
     name: '',
     number: '',
+    error: false,
   };
 
   handleInputChange = event => {
@@ -15,22 +16,27 @@ export class Phonebook extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
     const contactData = {
       name: this.state.name,
       number: Number.parseInt(this.state.number),
     };
+    if (isNaN(contactData.number)) {
+      return this.setState({
+        error: 'Please write number',
+      });
+    }
     this.props.handleAddContact(contactData);
     this.setState({
       name: '',
       number: '',
+      error: false,
     });
   };
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className={css.continer}>
-        <label className={css.phonebookContainer}>
+      <form onSubmit={this.handleSubmit} className={css.phonebookContainer}>
+        <label className={css.phonebookLabel}>
           <span className={css.phonebookText}>Name</span>
           <input
             className={css.phonebookInput}
@@ -43,8 +49,11 @@ export class Phonebook extends Component {
             required
           />
         </label>
-        <label className={css.phonebookContainer}>
-          <span className={css.text}>Number</span>
+        <label className={css.phonebookLabel}>
+          <span className={css.phonebookText}>Number</span>
+          {this.state.error && (
+            <span className={css.phonebookTextError}>{this.state.error}</span>
+          )}
           <input
             className={css.phonebookInput}
             onChange={this.handleInputChange}

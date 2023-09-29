@@ -1,8 +1,12 @@
+import css from './Filter.module.css';
 export const Filter = ({ filter, onFilterChange }) => (
-  <input
-    type="text"
-    value={filter}
-    onChange={onFilterChange}
-    placeholder="Search contacts"
-  />
+  <label className={css.filterContainer}>
+    <input
+      type="text"
+      className={css.filterInput}
+      value={filter}
+      onChange={onFilterChange}
+      placeholder="Search contacts"
+    />
+  </label>
 );

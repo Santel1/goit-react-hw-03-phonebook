@@ -1,10 +1,11 @@
 import { ContactItem } from './ContactItem';
 import { nanoid } from 'nanoid';
 
+import css from './ContactList.module.css';
 export const ContactsList = ({ filteredContacts, handleDeleteContacts }) => {
   return (
-    <div>
-      <ul>
+    <div className={css.contactsListContainer}>
+      <ul className={css.contactsList}>
         {filteredContacts.map(contact => {
           return (
             <ContactItem

@@ -1,6 +1,7 @@
 import { ContactsList } from 'components/ContactsList';
 import { Filter } from 'components/Filter';
 import { Phonebook } from 'components/Phonebook';
+import { Title } from 'components/Title';
 import { Component } from 'react';
 
 export class App extends Component {
@@ -8,6 +9,19 @@ export class App extends Component {
     contacts: [],
     filter: '',
   };
+
+  componentDidMount() {
+    const stringifiedContacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(stringifiedContacts) ?? [];
+    this.setState({ contacts: parsedContacts });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts.length !== prevState.contacts.length) {
+      const stringifiedContacts = JSON.stringify(this.state.contacts);
+      localStorage.setItem('contacts', stringifiedContacts);
+    }
+  }
 
   handleAddContact = contactData => {
     if (
@@ -45,9 +59,9 @@ export class App extends Component {
     );
     return (
       <div>
-        <h1>Phonebook</h1>
+        <Title>Phonebook</Title>
         <Phonebook handleAddContact={this.handleAddContact} />
-        <h2>Contacts</h2>
+        <Title>Contacts</Title>
         <Filter filter={filter} onFilterChange={this.handleFilterChange} />
         <ContactsList
           filteredContacts={filteredContacts}
