@@ -1,0 +1,14 @@
+.phonebookContainer {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.phonebookInput {
+  padding: 4px;
+}
+.phonebookBtn {
+  padding: 8px;
+}
