@@ -1,9 +1,8 @@
-import { ContactsList } from 'components/ContactsList';
-import { Filter } from 'components/Filter';
-import { Phonebook } from 'components/Phonebook';
-import { Title } from 'components/Title';
+import { ContactsList } from 'components/ContactList/ContactsList';
+import { Filter } from 'components/Filter/Filter';
+import { Phonebook } from 'components/Phonebook/Phonebook';
+import { Title } from 'components/Title/Title';
 import { Component } from 'react';
-
 export class App extends Component {
   state = {
     contacts: [],
